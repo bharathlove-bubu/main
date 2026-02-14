@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: pink;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 50px;
+      color: white;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background: rgb(248, 245, 245);
+      color: #ff4b7d;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px white; }
+      to { text-shadow: 0 0 30px yellow; }
+    }
+
+    /* Cake section */
+    .cake-section { display: none; flex-direction: column; align-items: center; }
+    .cake { width: 200px; height: 150px; background: #e43d86; border-radius: 10px; position: relative; margin-top: 20px; }
+    .icing { width: 200px; height: 40px; background: white; border-radius: 0 0 20px 20px; position: absolute; top: 0; left: 0; }
+    .candle { width: 20px; height: 60px; background: red; margin: 0 auto; position: relative; top: -60px; border-radius: 5px; }
+    .flame { width: 20px; height: 20px; background: orange; border-radius: 50%; position: absolute; top: -20px; left: 0; right: 0; margin: auto; animation: flicker 0.3s infinite alternate; }
+    @keyframes flicker { from { transform: scale(1); opacity: 1; } to { transform: scale(1.2); opacity: 0.8; } }
+    .banners { display: none; margin-top: 20px; }
+    .banner { display: inline-block; width: 40px; height: 40px; clip-path: polygon(0 0, 100% 0, 50% 100%); margin: 5px; }
+    .banner:nth-child(1){background: blue;} .banner:nth-child(2){background: yellow;} .banner:nth-child(3){background: green;}
+    .banner:nth-child(4){background: pink;} .banner:nth-child(5){background: red;}
+    #lightBtn, #burstBtn { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Greeting Section -->
+  <div id="greeting">
+    <h1 id="message">Click the button 🎁</h1>
+    <button id="wishBtn" onclick="showWish()">Show Wish</button>
+    <button id="surpriseBtn" style="display:none;" onclick="openSurprise()">Open Surprise</button>
+  </div>
+
+  <!-- Cake Section -->
+  <div class="cake-section" id="cakeSection">
+    <h1>🎉 Happy Valentines Day 🎉</h1>
+    <div class="banners" id="banners">
+      <div class="banner"></div>
+      <div class="banner"></div>
+      <div class="banner"></div>
+      <div class="banner"></div>
+      <div class="banner"></div>
+    </div>
+
+    <div class="cake">
+      <div class="candle" id="candle"></div>
+      <div class="icing"></div>
+    </div>
+
+    <button id="decorateBtn" onclick="decorate()">Decorate</button>
+    <button id="lightBtn" onclick="lightCandle()">Light Candle</button>
+    <button id="burstBtn" onclick="burstBalloons()">Burst Balloons</button>
+  </div>
+
+  <script>
+    function showWish() {
+      document.getElementById("message").innerHTML =
+        "🎉 Happy Valentines Day to My Special Person 💖";
+      document.getElementById("wishBtn").style.display = "none";
+      document.getElementById("surpriseBtn").style.display = "inline-block";
+    }
+
+    function openSurprise() {
+      document.getElementById("greeting").style.display = "none";
+      document.getElementById("cakeSection").style.display = "flex";
+    }
+
+    function decorate() {
+      document.getElementById("banners").style.display = "block";
+      document.getElementById("decorateBtn").style.display = "none"; 
+      document.getElementById("lightBtn").style.display = "inline-block"; 
+    }
+
+    let flameOn = false;
+    function lightCandle() {
+      const candle = document.getElementById("candle");
+      if (!flameOn) {
+        const flame = document.createElement("div");
+        flame.className = "flame";
+        flame.id = "flame";
+        candle.appendChild(flame);
+        flameOn = true;
+
+        document.getElementById("lightBtn").style.display = "none";
+        document.getElementById("burstBtn").style.display = "inline-block";
+      } else {
+        const flame = document.getElementById("flame");
+        if (flame) flame.remove();
+        flameOn = false;
+      }
+    }
+    function burstBalloons() {
+  window.location.href = "combined.html";
+  
+}
+ 
+  </script>
+
+</body>
+</html>
