@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎂 Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffe6f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 60px;
+      color: #ff4b7d;
+      text-shadow: 0 0 10px white, 0 0 20px pink;
+    }
+
+    /* Diary */
+    .diary {
+      width: 400px;
+      height: 500px;
+      margin: 50px auto;
+      background: brown;
+      border-radius: 15px;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    .diary::before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      background: #8b4513;
+      left: -30px;
+      top: 0;
+      border-radius: 8px 0 0 8px;
+    }
+
+    /* Message Card */
+    .message-card, .gift-section, .final-section {
+      display: none;
+      margin-top: 30px;
+      background: white;
+      border: 4px solid pink;
+      border-radius: 15px;
+      padding: 30px;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .banners {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .banner {
+      width: 50px;
+      height: 50px;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      margin: 5px;
+    }
+    .banner:nth-child(1){background: blue;}
+    .banner:nth-child(2){background: yellow;}
+    .banner:nth-child(3){background: green;}
+    .banner:nth-child(4){background: pink;}
+    .banner:nth-child(5){background: red;}
+
+    button {
+      background: pink;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Gift Box */
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+      background: red;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      animation: bounce 1s infinite alternate;
+    }
+    .gift-box::before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      background: white;
+      left: 60px;
+      top: 0;
+    }
+    .gift-box::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      background: white;
+      top: 60px;
+      left: 0;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    /* Confetti effect */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: pink;
+      top: -10px;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Title above diary -->
+  <h1>Love ❤️❤️❤️</h1>
+
+  <!-- Diary -->
+  <div class="diary" onclick="openDiary()"></div>
+
+  <!-- Message Card -->
+  <div class="message-card" id="messageCard">
+    <div class="banners">
+      <div class="banner"></div>
+      <div class="banner"></div>
+      <div class="banner"></div>
+      <div class="banner"></div>
+      <div class="banner"></div>
+    </div>
+    <h2>A Special Message</h2>
+    <p>
+      💖 Happy Valentine’s Day, My Love! 💖
+      You are the most beautiful part of my life, the reason my days feel brighter and my nights feel softer. Your smile has a way of melting away every worry, and your kindness makes the world feel gentler.
+      On this special day, I want you to know how deeply I cherish you. You deserve endless love, laughter, and joy—not just today, but every single day we share together.
+      Thank you for being my safe place, my happiness, and my forever. I hope this Valentine’s Day brings you surprises, sweet moments, and memories that make your heart overflow with love.
+      ❤️ Always yours, with all my love ❤️
+
+Would you like me to style this message in your HTML flow (like the diary → message card → gift → final surprise), so it appears as the big Valentine’s reveal instead of the birthday text?
+
+    </p>
+    <button onclick="nextPage()">Next →</button>
+  </div>
+
+  <!-- Gift Section -->
+  <div class="gift-section" id="giftSection">
+    <h2>One Last Thing...</h2>
+    <p>Tap the gift 🎁</p>
+    <div class="gift-box" onclick="openGift()"></div>
+  </div>
+
+  <!-- Final Surprise Section -->
+  <div class="final-section" id="finalSection">
+    <h2>Lots of love for you ❤️</h2>
+    <div style="font-size:80px;">🐻📦❤️</div>
+    <p>
+      💖 Once again, Happy Valentine’s Day!
+Hope you felt all the love, joy, and magic I wanted to share with you today. You are my forever surprise, and I’m grateful for every moment with you. ❤️
+
+This fits perfectly as the final reveal message after the gift section, just like your “Once again, Happy Birthday! Hope you loved your surprise.” ending.
+Would you like me to drop this directly into the final-section of your HTML code so it replaces the birthday text seamlessly?
+
+    </p>
+    <button onclick="replay()">Replay</button>
+  </div>
+
+  <script>
+    function openDiary() {
+      document.querySelector(".diary").style.display = "none";
+      document.getElementById("messageCard").style.display = "block";
+    }
+
+    function nextPage() {
+      document.getElementById("messageCard").style.display = "none";
+      document.getElementById("giftSection").style.display = "block";
+    }
+
+    function openGift() {
+      document.getElementById("giftSection").style.display = "none";
+      document.getElementById("finalSection").style.display = "block";
+      launchConfetti();
+    }
+
+    function replay() {
+      document.getElementById("finalSection").style.display = "none";
+      document.querySelector(".diary").style.display = "block";
+    }
+
+    // Confetti generator
+    function launchConfetti() {
+      for (let i = 0; i < 30; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.background = ["pink","yellow","blue","green","red"][Math.floor(Math.random()*5)];
+        confetti.style.animationDuration = (Math.random()*3+2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎂 Birthday & Proposal 🎈</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1, h2 { margin-bottom: 20px; }
+
+    /* Balloons */
+    .balloon {
+      display: inline-block;
+      width: 80px;
+      height: 100px;
+      margin: 20px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .balloon:hover { transform: scale(1.1); }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: black;
+      transform: translateX(-50%);
+    }
+
+    #messageBox {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #ff4b7d;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: none;
+      position: relative;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    #yesBtn { background: #4CAF50; color: white; }
+    #noBtn { background: #f44336; color: white; position: absolute; }
+
+    /* Gallery */
+    .card {
+      max-width: 90%;
+      margin: 20px auto;
+      background: #333;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(242, 14, 219, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease forwards;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    #nextBtn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: pink;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      display: none; /* hidden until balloons are done */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Balloon Section -->
+  <h1>Pop the balloons 🎉</h1>
+  <div>
+    <div class="balloon" style="background:pink;" onclick="popBalloon(1,this)"></div>
+    <div class="balloon" style="background:orange;" onclick="popBalloon(2,this)"></div>
+    <div class="balloon" style="background:green;" onclick="popBalloon(3,this)"></div>
+    <div class="balloon" style="background:blue;" onclick="popBalloon(4,this)"></div>
+  </div>
+  <div id="messageBox"></div>
+  <div class="buttons" id="buttons">
+    <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+    <button id="noBtn" onmouseover="runAway()">No 🙈</button>
+  </div>
+
+  <!-- Gallery Section -->
+  <h2 id="galleryTitle" style="display:none;">Some Sweet Moments (Reveal one by one)</h2>
+  <div class="gallery" id="gallery">
+    <div class="card"><img src="bhuvi1.jpeg" alt="Moment 1"></div>
+    <div class="card"><img src="bhuvi2.jpeg" alt="Moment 2"></div>
+    <div class="card"><img src="bhuvi3.jpeg" alt="Moment 3"></div>
+    <div class="card"><img src="bhuvi4.jpeg" alt="Moment 4"></div>
+    <div class="card"><img src="bhuvi5.jpeg" alt="Moment 5"></div>
+    <div class="card"><img src="bhuvi6.jpeg" alt="Moment 6"></div>
+    <div class="card"><img src="bhuvi7.jpeg" alt="Moment 7"></div>
+    <div class="card"><img src="bhuvi8.jpeg" alt="Moment 8"></div>
+    <div class="card"><img src="bhuvi9.jpeg" alt="Moment 9"></div>
+    <!-- Local photos (ensure these paths are accessible in your project folder) -->
+    <div class="card"><img src="D:\bharath photos\WhatsApp Image 2026-02-14 at 18.26.43.jpeg"  alt="Moment 10"></div>
+    <div class="card"><img src="WhatsApp Image 2026-02-14 at 18.26.44 (1).jpeg"Moment 11"></div>
+    <div class="card"><img src="D:\bharath photos\WhatsApp Image 2026-02-14 at 18.26.44.jpeg" alt="Moment 12"></div>
+    <div class="card"><img src="D:\bharath photos\WhatsApp Image 2026-02-14 at 18.26.12.jpeg" alt="Moment 13"></div>
+  </div>
+  <button id="nextBtn">➡️ Next Moment</button>
+
+  <script>
+    // Balloon logic
+    const messages = {1:"You",2:"Want",3:"To",4:"Marry Me 💍"};
+    let poppedCount = 0;
+
+    function popBalloon(num, balloon) {
+      balloon.style.display = "none";
+      document.getElementById("messageBox").innerHTML = messages[num];
+      poppedCount++;
+      if (poppedCount === 4) {
+        document.getElementById("buttons").style.display = "block";
+      }
+    }
+
+    function sayYes() {
+      document.getElementById("messageBox").innerHTML = "💖 Yay! You said YES! 💖";
+      document.getElementById("buttons").style.display = "none";
+      // Show gallery after YES
+      document.getElementById("galleryTitle").style.display = "block";
+      const cards = document.querySelectorAll('.card');
+      cards[0].style.display = 'flex';
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    function runAway() {
+      const noBtn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Gallery logic
+    const cards = document.querySelectorAll('.card');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    nextBtn.addEventListener('click', () => {
+      current++;
+      if (current < cards.length) {
+        cards[current].style.display = 'flex';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      } else {
+        nextBtn.style.display = 'none';
+        // After last photo, redirect to diary.html
+        burstBalloons();
+      }
+    });
+
+    function burstBalloons() {
+      window.location.href = "diary.html";
+    }
+  </script>
+
+</body>
+</html>
